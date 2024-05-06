@@ -30,7 +30,7 @@ class Journal
         {
             foreach (Entry entry in _entries)
             {
-                file.WriteLine($"Date: {entry.Date} - Prompt: {entry._promptText}\n{entry._entryText}\n");
+                file.WriteLine($"{entry.Date} | {entry._promptText} | {entry._entryText}");
             }
         }
         Console.WriteLine("Saved successfully!");
@@ -40,7 +40,6 @@ class Journal
     {
         Console.Write("Enter the filename: ");
         string filename = Console.ReadLine();
-
         string filePath = Path.Combine(Environment.CurrentDirectory, filename);
 
         if (!File.Exists(filePath))
@@ -54,38 +53,16 @@ class Journal
         using (StreamReader file = new StreamReader(filePath))
         {
             string line;
-            Entry entry = null;
             while ((line = file.ReadLine())!= null)
             {
-                if (line.StartsWith("Date: "))
-                {
-                    if (entry!= null)
-                    {
-                        _entries.Add(entry);
-                    }
-                    entry = new Entry();
-                    string[] parts = line.Split(new string[] { " - " }, StringSplitOptions.None);
-                    DateTime date = DateTime.ParseExact(parts[0].Substring(5), "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                    entry.Date = date.ToString("yyyy-MM-dd");
-                }
-                else if (line.StartsWith("Prompt: "))
-                {
-                    string[] parts = line.Split(new string[] { " - " }, StringSplitOptions.None);
-                    entry._promptText = parts[1];
-                }
-                else
-                {
-                    entry._entryText += line + Environment.NewLine;
-                }
-            }
-            if (entry!= null)
-            {
+                string[] parts = line.Split('|');
+                Entry entry = new Entry();
+                entry.Date = parts[0].Trim();
+                entry._promptText = parts[1];
+                entry._entryText = parts[2];
                 _entries.Add(entry);
             }
         }
         Console.WriteLine("Loaded successfully!");
     }
-
-    
-
 }

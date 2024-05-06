@@ -43,6 +43,7 @@ class Program
             else if (choice == 3)
             {
                 myJournal.LoadFromFile();
+                myJournal.DisplayAll();
             }
             else if (choice == 4)
             {
