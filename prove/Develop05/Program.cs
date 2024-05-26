@@ -12,7 +12,6 @@ class Program
         string nameUser = Console.ReadLine();
         Console.WriteLine();
 
-
         GoalManager start = new GoalManager(nameUser);
         start.Start();
     }
