@@ -38,11 +38,14 @@ class Program
             Console.WriteLine($"Number of Comments: {video.GetNumberOfComments()}");
 
             List<Comment> comments = video.GetComments();
+
             foreach (var comment in comments)
             {
                 Console.WriteLine(comment.ShowCommentInfo());
             }
+
         Console.WriteLine();
+        
         }
     }
 }

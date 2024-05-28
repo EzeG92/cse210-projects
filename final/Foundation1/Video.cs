@@ -8,7 +8,6 @@ class Video
     private int _lengthInSeconds;
     private List<Comment> comments;
 
-
     public Video (string title, string author, int lengthInSeconds)
     {
         _title = title;
@@ -36,5 +35,4 @@ class Video
     {
         return new List<Comment>(comments);
     }
-
 }

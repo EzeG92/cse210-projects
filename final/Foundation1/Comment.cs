@@ -2,7 +2,6 @@ using System;
 
 class Comment
 {
-
     private string _commentName;
 
     private string _commentText;
@@ -18,5 +17,4 @@ class Comment
     {
         return "Comment by "+_commentName + " : " + _commentText;
     }
-
 }
